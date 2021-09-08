@@ -1,0 +1,31 @@
+<nav>
+    <mat-toolbar color="primary">
+        <mat-toolbar-row class="menu-toolbar">
+    
+          <img width="200" src="assets/img/arkusnexus-black.png" alt="arkus nexus img">
+          <span>Operation Admin</span>
+    
+          <span class="spacer"></span>
+    
+          <a routerLink="/home/users" routerLinkActive="link-active">Users</a>
+          <a routerLink="/home/accounts" routerLinkActive="link-active">Accounts</a>
+    
+          <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn">
+            <mat-icon>menu</mat-icon>
+          </button>
+    
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+              <mat-icon>perm_identity</mat-icon>
+              <span>{{auth.name}}</span>
+            </button>
+    
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>logout</mat-icon>
+                <span>Logout</span>
+              </button>
+          </mat-menu>
+    
+        </mat-toolbar-row>
+    </mat-toolbar>
+</nav>

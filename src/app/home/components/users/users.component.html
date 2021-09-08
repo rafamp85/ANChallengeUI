@@ -1,0 +1,58 @@
+<div class="init-table-container mat-elevation-z8">
+    <div class="loading-shade"
+         *ngIf="isLoadingResults || isRateLimitReached">
+
+         <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+
+        <div class="rate-limit-reached" *ngIf="isRateLimitReached">
+            Users limit has been reached. It will be reset in one minute.
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="title-card">
+            <label class="label-title">Users</label>
+        </div>
+        
+        <table 
+            mat-table 
+            [dataSource]="usersData" 
+            class="example-table"
+            matSort 
+            matSortActive="name" 
+            matSortDisableClear 
+            matSortDirection="desc"
+        >
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let row">{{row.name}}</td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let row">{{row.email}}</td>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                Role
+            </th>
+            <td mat-cell *matCellDef="let row">{{row.role}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter </td>
+            </tr>
+        </table>
+
+        <mat-paginator class="paginator" [pageSize]="30" aria-label="Select page of Users search results"></mat-paginator>
+    </div>
+
+</div>

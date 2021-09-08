@@ -1,0 +1,26 @@
+.menu-toolbar {
+  img {
+    margin-right: 15px;
+  }
+
+  a {
+    color: #fff;
+    margin-right: 25px;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--green-cyan-light);
+    }
+  }
+
+  .link-active {
+    color: var(--green-cyan-light);
+    text-decoration: underline;
+  }
+
+  .menu-btn {
+    &:hover {
+      color: var(--green-cyan-light);
+    }
+  }
+}

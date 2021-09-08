@@ -1,0 +1,59 @@
+<mat-card>
+    <mat-card-title>Sign In</mat-card-title>
+    
+    <mat-card-content>
+        <form 
+            [formGroup]="loginForm"
+            (ngSubmit)="signIn()" 
+            autocomplete="off"
+        >
+            <p>
+                <mat-form-field>
+                    <input 
+                        type="email" 
+                        matInput 
+                        formControlName="email"
+                        required
+                        placeholder="Email"
+                    >
+                    <mat-error *ngIf="loginForm.controls.email.hasError('email') && !loginForm.controls.email.hasError('required')">
+                        Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.controls.email.hasError('required')">
+                        Email is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+
+            <p>
+                <mat-form-field>
+                    <input 
+                        type="password" 
+                        matInput 
+                        formControlName="password"
+                        required
+                        placeholder="Password"
+                    >
+                    <mat-error *ngIf="loginForm.controls.password.hasError('minlength') && !loginForm.controls.password.hasError('required')">
+                        Password must contain at least 6 characters
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.controls.password.hasError('required')">
+                        Password is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </p>
+
+            <div class="button">
+                <button 
+                    type="submit"
+                    mat-raised-button 
+                    color="primary"
+                    [disabled]="loginForm.invalid"
+                >
+                    Sign In
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
