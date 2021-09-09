@@ -25,4 +25,28 @@ import { IAccount } from '../interfaces/account.model';
         return this.http.get<IAccount[]>(`${this.api}/accounts`, {headers});
     }
 
+    addAccount( newAccount: IAccount ) {
+      const headers = new HttpHeaders().set(
+        'x-token', localStorage.getItem('token') || ''
+      );
+
+      return this.http.post(`${this.api}/accounts`, newAccount, {headers});
+    }
+
+    updateAccount( account: IAccount ) {
+      const headers = new HttpHeaders().set(
+        'x-token', localStorage.getItem('token') || ''
+      );
+
+      return this.http.put(`${this.api}/accounts/${account.id}`, account, {headers});
+    }
+
+    deleteAccount( id: number ) {
+      const headers = new HttpHeaders().set(
+        'x-token', localStorage.getItem('token') || ''
+      );
+
+      return this.http.delete(`${this.api}/accounts/${id}`, {headers});
+    }
+
   }

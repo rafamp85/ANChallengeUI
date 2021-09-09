@@ -38,7 +38,8 @@ export class AuthService {
         tap( auth => {
           localStorage.setItem('token', auth.token);
           if ( auth.ok ) {
-            this._auth = auth
+            this._auth = auth;
+            console.log(this._auth);
           }
         }),
         map( resp => resp.ok ),
@@ -56,6 +57,7 @@ export class AuthService {
         map( auth => {
           localStorage.setItem('token', auth.token);
           if ( auth.ok ) {
+            console.log('se ejecuto')
             this._auth = auth
           }
 

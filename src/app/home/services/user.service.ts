@@ -33,6 +33,14 @@ import { tap } from 'rxjs/operators';
       return this.http.post(`${this.api}/users`, newUser, {headers});
     }
 
+    updateUser( user:IAuth ) {
+      const headers = new HttpHeaders().set(
+        'x-token', localStorage.getItem('token') || ''
+      );
+
+      return this.http.put(`${this.api}/users/${user.id}`, user, {headers});
+    }
+
     deleteUser( id: number ) {
       const headers = new HttpHeaders().set(
         'x-token', localStorage.getItem('token') || ''

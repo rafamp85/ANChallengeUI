@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title>Create User</mat-card-title>
+    <mat-card-title>{{title}}</mat-card-title>
     
     <mat-card-content>
         <form 
@@ -60,12 +60,24 @@
 
             <div class="button">
                 <button 
+                    *ngIf="!userEdited"
                     type="submit"
                     mat-raised-button 
                     color="primary"
                     [disabled]="registerForm.invalid"
                 >
                     Register
+                </button>
+
+                <button 
+                    *ngIf="userEdited"
+                    type="button"
+                    (click)="updateUser()"
+                    mat-raised-button 
+                    color="primary"
+                    [disabled]="registerForm.invalid"
+                >
+                    Update
                 </button>
             </div>
         </form>

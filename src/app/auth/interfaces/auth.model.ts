@@ -4,5 +4,6 @@ export interface IAuth {
     name: string,
     token: string,
     email?: string,
-    msg?: string
+    msg?: string,
+    role?:string
 }
