@@ -2,6 +2,12 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: 'oa-footer',
-    template: `<footer>Todos los derechos reservados &copy; 2021</footer>`
+    template: `
+        <div class="footer">
+            <footer>ArkusNexus Todos los derechos reservados &copy; {{year}}</footer>
+        </div>
+    `
 })
-export class FooterComponent {}
+export class FooterComponent {
+    year = new Date().getFullYear();
+}

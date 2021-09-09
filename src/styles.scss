@@ -22,6 +22,16 @@ body {
   height: 100%;
 }
 
+.footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  height: 30px;
+  width: 100%;
+  color: #fff;
+  background: var(--green-cyan);
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -82,18 +92,37 @@ table {
   width: 80%;
 }
 
+.mat-row .mat-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+}
+
+.mat-row-selection {
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--gray-light);
+    cursor: pointer;
+  }
+}
+
 /** 
   Titles in Tables
 */
 .title-card {
+  display: flex;
   background-color: #fff;
   color: black;
   height: 100%;
   width: 80%;
 
+  .group-icon {
+    margin-right: 7px;
+    margin-top: -2px;
+  }
+
   .label-title {
     font-size: 150%;
     font-weight: 800;
-    padding: 30px;
   }
 }

@@ -4,6 +4,7 @@ import { Component } from "@angular/core";
     template: `
         <oa-header></oa-header>
         <router-outlet></router-outlet>
+        <oa-footer></oa-footer>
     `
 })
 export class HomeComponent {}

@@ -18,12 +18,27 @@ import { tap } from 'rxjs/operators';
     constructor( private http: HttpClient ) { }
 
     getAllUsers(): Observable<IAuth[]> {
-
         const headers = new HttpHeaders().set(
             'x-token', localStorage.getItem('token') || ''
         );
 
         return this.http.get<IAuth[]>(`${this.api}/users`, {headers});
+    }
+
+    addUser( newUser:IAuth ) {
+      const headers = new HttpHeaders().set(
+        'x-token', localStorage.getItem('token') || ''
+      );
+
+      return this.http.post(`${this.api}/users`, newUser, {headers});
+    }
+
+    deleteUser( id: number ) {
+      const headers = new HttpHeaders().set(
+        'x-token', localStorage.getItem('token') || ''
+      );
+
+      return this.http.delete(`${this.api}/users/${id}`, {headers});
     }
 
   }

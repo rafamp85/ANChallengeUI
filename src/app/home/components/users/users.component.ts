@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator } from "@angular/material/paginator";
 import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
+import { Router } from "@angular/router";
 import { IAuth } from "src/app/auth/interfaces/auth.model";
 import { UserService } from "../../services/user.service";
 
@@ -10,7 +11,7 @@ import { UserService } from "../../services/user.service";
 })
 export class UsersComponent implements OnInit {
 
-    displayedColumns: string[] = ['name', 'email', 'role'];
+    displayedColumns: string[] = ['name', 'email', 'role', 'delete'];
     usersData!: MatTableDataSource<IAuth>
 
     isLoadingResults = true;
@@ -20,13 +21,17 @@ export class UsersComponent implements OnInit {
     @ViewChild(MatSort) sort!: MatSort;
 
     constructor(
-        private usersService: UserService
+        private userService: UserService,
+        private router: Router
     ) {}
 
     ngOnInit() {
-        this.usersService.getAllUsers()
+        this.getUsersData();
+    }
+
+    getUsersData() {
+        this.userService.getAllUsers()
             .subscribe( (resp: any) => {
-                console.log(resp.users);
                 this.usersData = resp.users;
 
                 this.isLoadingResults = false;
@@ -40,5 +45,16 @@ export class UsersComponent implements OnInit {
         if (this.usersData.paginator) {
           this.usersData.paginator.firstPage();
         }
+    }
+
+    selectUser( user: IAuth ) {
+        this.router.navigate(['/home/profile'], {queryParams: user});
+    }
+
+    deleteUser(user: IAuth) {
+        this.userService.deleteUser(user.id).subscribe( res => {
+            console.log(res);
+            this.getUsersData();
+        });
     }
 }
