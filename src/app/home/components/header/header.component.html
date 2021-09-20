@@ -15,7 +15,7 @@
           </button>
     
           <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="/home/profile">
+            <button mat-menu-item (click)="editProfile()">
               <mat-icon>perm_identity</mat-icon>
               <span>{{auth.name}}</span>
             </button>

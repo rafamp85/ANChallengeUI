@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanLoad, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Router, RouterStateSnapshot } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 import { AuthService } from '../services/auth.service';
 
@@ -11,17 +12,34 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard implements CanLoad, CanActivate {
 
+  userRole = environment.userRole;
+
+  get auth() {
+    return this.authService.auth;
+  }
+
   constructor( 
     private authService: AuthService,
     private router: Router
   ) {}
 
-  canActivate(): Observable<boolean> | boolean {
-      return this.authService.validateToken()
-        .pipe(
-          tap( valid => !valid ? this.router.navigate(['/auth']) : true )
-        );
-  
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean> | boolean {
+
+    return this.authService.validateToken()
+      .pipe(
+        tap( valid => !valid ? this.router.navigate(['/auth']) : true )
+      );
+    // let url: string = state.url;
+    // return this.redirectToProfile(next, url);
+  }
+
+  canActivateChild(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | boolean {
+    return this.canActivate(next, state);
   }
 
   canLoad(): Observable<boolean> | boolean {
@@ -29,5 +47,24 @@ export class AuthGuard implements CanLoad, CanActivate {
         .pipe(
           tap( valid => !valid ? this.router.navigate(['/auth']) : true )
         );
+  }
+
+  redirectToProfile(route: ActivatedRouteSnapshot, url: any) {
+    if (this.authService.isLoggedIn()) {
+      console.log(this.auth);
+      const authRole = this.auth.role;
+
+      console.log(this.userRole, authRole);
+
+      if (route.data.role && route.data.role.indexOf(authRole) === -1) {
+        console.log('NORMAL')
+        this.router.navigate(['/auth']);
+        return false;
+      }
+      return true;
+    }
+
+    this.router.navigate(['/auth']);
+    return false;
   }
 }

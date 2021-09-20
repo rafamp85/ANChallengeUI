@@ -46,19 +46,52 @@
                         type="password" 
                         matInput 
                         formControlName="password"
-                        required
+                        [required]="!userEdited"
                         placeholder="Password"
                     >
                     <mat-error *ngIf="registerForm.controls.password.hasError('minlength') && !registerForm.controls.password.hasError('required')">
                         Password must contain at least 6 characters
                     </mat-error>
-                    <mat-error *ngIf="registerForm.controls.password.hasError('required')">
+                    <mat-error *ngIf="registerForm.controls.password.hasError('required') && !userEdited">
                         Password is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
             </p>
 
+            <div formGroupName="abilities">
+                <p>
+                    <mat-form-field>
+                        <input 
+                            type="number" 
+                            matInput 
+                            formControlName="englishLevel"
+                            required
+                            placeholder="English Level"
+                        >
+                    </mat-form-field>
+                </p>
+
+                <p>
+                    <mat-form-field>
+                        <mat-label>Technologies</mat-label>
+                        <mat-select formControlName="techKnowledge" multiple>
+                          <mat-option *ngFor="let tech of technologyList" [value]="tech">{{tech}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+            </div>
+
             <div class="button">
+                <button 
+                    type="button"
+                    routerLink="/home"
+                    mat-raised-button 
+                    color="warn"
+                    style="margin-right: 10px;"
+                >
+                    Cancel
+                </button>
+
                 <button 
                     *ngIf="!userEdited"
                     type="submit"

@@ -11,7 +11,7 @@ import { UserService } from "../../services/user.service";
 })
 export class UsersComponent implements OnInit {
 
-    displayedColumns: string[] = ['name', 'email', 'role', 'delete'];
+    displayedColumns: string[] = ['name', 'email', 'role', 'englishLevel', 'techKnowledge', 'delete'];
     usersData!: MatTableDataSource<IAuth>
 
     isLoadingResults = true;
@@ -48,7 +48,12 @@ export class UsersComponent implements OnInit {
     }
 
     selectUser( user: IAuth ) {
-        this.router.navigate(['/home/profile'], {queryParams: user});
+        const englishLevel = user.abilities.englishLevel;
+        const techKnowledge = user.abilities.techKnowledge;
+
+        const userData = { ...user, englishLevel, techKnowledge};
+
+        this.router.navigate(['/home/profile'], {queryParams: userData});
     }
 
     deleteUser(user: IAuth) {

@@ -39,7 +39,7 @@ export class LoginComponent {
             {
               duration: this.durationInSeconds * 1000, 
               panelClass: ['error-snack']
-            });
+          });
         }
       });
 

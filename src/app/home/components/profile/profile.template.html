@@ -7,7 +7,13 @@
     <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Rafael Photo">
     <mat-card-content>
       <p>
-        {{role}}
+        English Level: <b>{{englishLevel}}</b>
+      </p>
+      <p *ngIf="techKnowledge">
+        Technical Knowledge: <b>{{techKnowledge}}</b>
+      </p>
+      <p>
+        Role: <b>{{role}}</b>
       </p>
     </mat-card-content>
     <mat-card-actions>
@@ -16,7 +22,8 @@
         color="primary"
         (click)="editUser()"
       >
-        EDIT USER
+        {{titleEditBtn}}
       </button>
     </mat-card-actions>
   </mat-card>
+  

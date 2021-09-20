@@ -12,6 +12,8 @@ import { IAuth } from '../interfaces/auth.model';
 })
 export class AuthService {
 
+  isLogin = false;
+
   private api: string = environment.apiUrl;
   private _auth!: IAuth;
 
@@ -38,8 +40,8 @@ export class AuthService {
         tap( auth => {
           localStorage.setItem('token', auth.token);
           if ( auth.ok ) {
+            localStorage.setItem('state', 'true');
             this._auth = auth;
-            console.log(this._auth);
           }
         }),
         map( resp => resp.ok ),
@@ -57,7 +59,6 @@ export class AuthService {
         map( auth => {
           localStorage.setItem('token', auth.token);
           if ( auth.ok ) {
-            console.log('se ejecuto')
             this._auth = auth
           }
 
@@ -69,5 +70,14 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+  }
+
+  isLoggedIn() {
+    const loggedIn = localStorage.getItem('state');
+    if (loggedIn == 'true')
+      this.isLogin = true;
+    else
+      this.isLogin = false;
+    return this.isLogin;
   }
 }

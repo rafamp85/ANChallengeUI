@@ -55,6 +55,36 @@
             </td>
             </ng-container>
 
+            <!-- English Level Column -->
+            <ng-container matColumnDef="englishLevel">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear [hidden]="true">
+                    English Level
+                </th>
+                <td 
+                    mat-cell 
+                    *matCellDef="let row"
+                    (click)="selectUser(row)"
+                    [hidden]="true"
+                >
+                    {{row.abilities.englishLevel}}
+                </td>
+            </ng-container>
+
+            <!-- Tech Knowledge Column -->
+            <ng-container matColumnDef="techKnowledge">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header [hidden]="true" disableClear>
+                    Technical Knowledge
+                </th>
+                <td 
+                    mat-cell 
+                    *matCellDef="let row"
+                    (click)="selectUser(row)"
+                    [hidden]="true"
+                >
+                    {{row.abilities.techKnowledge}}
+                </td>
+            </ng-container>
+
             <!-- Role Column -->
             <ng-container matColumnDef="role">
             <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>

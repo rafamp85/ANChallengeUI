@@ -13,6 +13,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfileTemplateComponent } from './components/profile/profile.template';
+import { MyProfileComponent } from './components/profile/my-profile.component';
+import { EditMyProfileComponent } from './components/profile/edit-myprofile.component';
+import { RegisterTemplateComponent } from './components/users/register.template';
 
 
 
@@ -25,7 +29,11 @@ import { ProfileComponent } from './components/profile/profile.component';
     AddAccountComponent,
     FooterComponent,
     ProfileComponent,
-    RegisterComponent
+    MyProfileComponent,
+    RegisterComponent,
+    RegisterTemplateComponent,
+    ProfileTemplateComponent,
+    EditMyProfileComponent
   ],
   imports: [
     CommonModule,

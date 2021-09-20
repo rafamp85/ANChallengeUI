@@ -8,6 +8,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.success-snack {
+  background-color: var(--blue-info) !important;
+  color: white !important;
+}
+
 .error-snack {
   background-color: var(--red-error) !important;
   color: white !important;
@@ -26,9 +31,10 @@ body {
   position: fixed;
   left: 0px;
   bottom: 0px;
-  height: 30px;
+  height: 25px;
   width: 100%;
   color: #fff;
+  margin-top: 5px;
   background: var(--green-cyan);
 }
 
