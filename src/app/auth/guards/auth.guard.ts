@@ -27,13 +27,8 @@ export class AuthGuard implements CanLoad, CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | boolean {
-
-    return this.authService.validateToken()
-      .pipe(
-        tap( valid => !valid ? this.router.navigate(['/auth']) : true )
-      );
-    // let url: string = state.url;
-    // return this.redirectToProfile(next, url);
+    let url: string = state.url;
+    return this.redirectToProfile(next, url);
   }
 
   canActivateChild(
@@ -51,13 +46,13 @@ export class AuthGuard implements CanLoad, CanActivate {
 
   redirectToProfile(route: ActivatedRouteSnapshot, url: any) {
     if (this.authService.isLoggedIn()) {
-      console.log(this.auth);
       const authRole = this.auth.role;
 
-      console.log(this.userRole, authRole);
+      if ( url.includes('my-profile') || url.includes('edit-profile') ) {
+        return true;
+      }
 
-      if (route.data.role && route.data.role.indexOf(authRole) === -1) {
-        console.log('NORMAL')
+      if ( route.data.role && route.data.role.indexOf(authRole) === -1) {
         this.router.navigate(['/auth']);
         return false;
       }

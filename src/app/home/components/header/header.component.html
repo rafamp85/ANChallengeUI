@@ -7,8 +7,8 @@
     
           <span class="spacer"></span>
     
-          <a routerLink="/home/users" routerLinkActive="link-active">Users</a>
-          <a routerLink="/home/accounts" routerLinkActive="link-active">Accounts</a>
+          <a *ngIf="auth.role === adminRole" routerLink="/home/users" routerLinkActive="link-active">Users</a>
+          <a *ngIf="auth.role === adminRole" routerLink="/home/accounts" routerLinkActive="link-active">Accounts</a>
     
           <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-btn">
             <mat-icon>menu</mat-icon>

@@ -57,10 +57,8 @@ export class AddAccountComponent implements OnInit {
             return;
         }
 
-        console.log(this.registerForm.value);
         this.accountService.addAccount( this.registerForm.value )
             .subscribe( resp => {
-                console.log(resp);
                 this.router.navigate(['/home/accounts']);
             });
 
@@ -74,8 +72,6 @@ export class AddAccountComponent implements OnInit {
     
         this.accountService.updateAccount( this.registerForm.value )
           .subscribe( resp => {
-            console.log(resp);
-    
             this.router.navigate(['/home/accounts']);
           });
     
