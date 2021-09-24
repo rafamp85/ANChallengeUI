@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './profile.template.html',
   styleUrls: ['./profile.template.scss']
 })
-export class ProfileTemplateComponent implements OnInit {
+export class ProfileTemplateComponent implements OnInit, OnChanges {
 
   id: any;
   name: any;
@@ -22,6 +22,11 @@ export class ProfileTemplateComponent implements OnInit {
   constructor(
     private router: Router
   ) { }
+
+    ngOnChanges( changes: SimpleChanges ) {
+      this.initData();
+    }
+
 
   ngOnInit(): void {
     this.initData();

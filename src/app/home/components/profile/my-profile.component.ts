@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,7 +9,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class MyProfileComponent implements OnInit {
 
-    user: any;
+    user: any = {};
     myProfile = true;
 
     get authUser() {
@@ -15,14 +17,25 @@ export class MyProfileComponent implements OnInit {
     }
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private userService: UserService
     ) { }
 
     ngOnInit(): void {
         this.initData();
     }
 
-    initData() {
-        this.user = this.authUser;
+    initData() {            
+        this.userService.getUserById( this.authUser.id )
+            .subscribe( (resp: any) => {
+                this.user = resp.user;
+
+                this.user.id = resp.user.id;
+                this.user.name = resp.user.name;
+                this.user.email = resp.user.email;
+                this.user.role = resp.user.role;
+                this.user.englishLevel = resp.user.abilities.englishLevel;
+                this.user.techKnowledge = resp.user.abilities.techKnowledge;
+            });
     }
 }

@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent {
 
   loginForm: FormGroup = this.fb.group({
-    email: [ 'rafaelmp@gmail.com',  [Validators.required, Validators.email ]],
+    email: [ 'sadmin@arkusnexus.com',  [Validators.required, Validators.email ]],
     password: [ '123456', [ Validators.required, Validators.minLength(6) ]]
   });
 

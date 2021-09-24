@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { environment } from 'src/environments/environment';
 import { AuthGuard } from '../auth/guards/auth.guard';
 
+import { environment } from 'src/environments/environment';
 import { AccountsComponent } from './components/accounts/accounts.component';
 import { AddAccountComponent } from './components/accounts/add-account.component';
 import { EditMyProfileComponent } from './components/profile/edit-myprofile.component';

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+
 import { AuthService } from "src/app/auth/services/auth.service";
 import { environment } from "src/environments/environment";
 
@@ -10,12 +11,12 @@ import { environment } from "src/environments/environment";
 })
 export class HeaderComponent implements OnInit {
 
-    userRole: string = environment.userRole;
-    adminRole: string = environment.adminRole;
-
     get auth() {
         return this.authService.auth;
     }
+
+    userRole: string = environment.userRole;
+    adminRole: string = environment.adminRole;
 
     constructor( 
         private router: Router,
