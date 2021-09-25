@@ -19,6 +19,7 @@ export class AddAccountComponent implements OnInit {
         consult: [ '',  [ Validators.required ]],
       });
     
+    isDirty: boolean = true;
     title = 'Create Account';
     accountEdited = false;
     durationInSeconds = 5;

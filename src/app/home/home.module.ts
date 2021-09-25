@@ -17,6 +17,7 @@ import { ProfileTemplateComponent } from './components/profile/profile.template'
 import { MyProfileComponent } from './components/profile/my-profile.component';
 import { EditMyProfileComponent } from './components/profile/edit-myprofile.component';
 import { RegisterTemplateComponent } from './components/users/register.template';
+import { checkDirtyStateAccount, checkDirtyStateProfile, checkDirtyStateRegister } from '../shared/validateDeactive';
 
 
 
@@ -40,6 +41,20 @@ import { RegisterTemplateComponent } from './components/users/register.template'
     ReactiveFormsModule,
     HomeRoutingModule,
     MaterialModule
+  ],
+  providers: [
+    {
+      provide: 'canDeactiveRegister',
+      useValue: checkDirtyStateRegister
+    },
+    {
+      provide: 'canDeactiveAccount',
+      useValue: checkDirtyStateAccount
+    },
+    {
+      provide: 'canDeactiveProfile',
+      useValue: checkDirtyStateProfile
+    },
   ]
 })
 export class HomeModule { }

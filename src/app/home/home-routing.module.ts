@@ -27,6 +27,7 @@ const routes: Routes = [
       { path: 'register', component: RegisterComponent,
         canLoad: [ AuthGuard ],
         canActivate: [ AuthGuard ],
+        canDeactivate: [ 'canDeactiveRegister' ],
         data: {
           role: environment.adminRole
         }
@@ -41,6 +42,7 @@ const routes: Routes = [
       { path: 'add-account', component: AddAccountComponent, 
         canLoad: [ AuthGuard ],
         canActivate: [ AuthGuard ],
+        canDeactivate: [ 'canDeactiveAccount' ],
         data: {
           role: environment.adminRole
         }
@@ -62,6 +64,7 @@ const routes: Routes = [
       { path: 'edit-profile', component: EditMyProfileComponent,
         canLoad: [ AuthGuard ],
         canActivate: [ AuthGuard ],
+        canDeactivate: [ 'canDeactiveProfile' ],
         data: {
           role: environment.userRole
         }
