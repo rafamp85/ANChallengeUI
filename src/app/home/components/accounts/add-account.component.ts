@@ -53,10 +53,12 @@ export class AddAccountComponent implements OnInit {
         });
       }
 
-    registerUser() {
+    addAccount() {
         if( this.registerForm.invalid ) {
             return;
         }
+
+        this.isDirty = false;
 
         this.accountService.addAccount( this.registerForm.value )
             .subscribe( resp => {
@@ -70,6 +72,8 @@ export class AddAccountComponent implements OnInit {
         if( this.registerForm.invalid ) {
           return;
         }
+
+        this.isDirty = false;
     
         this.accountService.updateAccount( this.registerForm.value )
           .subscribe( resp => {
