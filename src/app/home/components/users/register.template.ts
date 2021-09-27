@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,6 +17,8 @@ export class RegisterTemplateComponent implements OnInit {
   get auth() {
     return this.authService.auth;
   }
+
+  @Output() isDirtyEvent = new EventEmitter<boolean>();
 
   registerForm: FormGroup = this.fb.group({
     id: [''],
@@ -80,6 +82,7 @@ export class RegisterTemplateComponent implements OnInit {
     }
 
     console.log(this.registerForm.value);
+    this.isDirtyEvent.emit(false);
 
     this.userService.addUser( this.registerForm.value )
       .subscribe( resp => {
@@ -103,6 +106,9 @@ export class RegisterTemplateComponent implements OnInit {
     if( this.registerForm.invalid ) {
       return;
     }
+
+    console.log(this.registerForm.value);
+    this.isDirtyEvent.emit(false);
 
     if( this.userEdited ) {
       this.registerForm.controls['email'].enable();
